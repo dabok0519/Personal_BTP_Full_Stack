@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition'
+define service ZUI_MAT_MINSUNG_V4 {
+  expose ZCDS_MAT_MS;
+}

@@ -1,0 +1,39 @@
+managed implementation in class zbp_cds_mat_ms unique; // 구현 클래스 이름 (자동 생성 가능)
+strict ( 2 ); // 문법 검사 수준 결정  (2가 최고치) ->최신 ABAP Cloud 표준을 100% 따르겠다
+with draft; // 1. Draft 기능을 활성화합니다.
+
+define behavior for ZCDS_MAT_MS
+draft table zmat_mins_d // 2. Draft 데이터를 담을 테이블 이름
+persistent table zmat_minsung
+lock master total etag CreatedAt // 여러 사람이 동시에 같은 데이터를 수정할 때 발생하는 충돌을 막는 '잠금 관리' 설정 == 동시성 제어
+authorization master ( instance ) // 이 데이터를 조작할 수 있는 '권한(Security)'을 누가 결정할지 정의
+//etag master <field_name> // 낙관적 잠금(로킹)(Optimistic Locking)'
+etag master CreatedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  field ( readonly : update ) Material;
+  field ( readonly ) CreatedAt;
+
+  // 2. etag master 선언을 determination 위로 올립니다.
+
+
+  // 3. 기존 determination 로직
+  determination calculateCreatedAt on save { create; }
+
+  // 4. 매핑 정보
+  mapping for zmat_minsung
+  {
+    Material     = matnr;
+    Description  = maktx;
+    MaterialType_Ref = mtart;
+    Unit         = meins;
+    CreatedAt    = created_at;
+  }
+}
