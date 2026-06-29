@@ -21,13 +21,8 @@ etag master CreatedAt
   field ( readonly : update ) Material;
   field ( readonly ) CreatedAt;
 
-  // 2. etag master 선언을 determination 위로 올립니다.
-
-
-  // 3. 기존 determination 로직
   determination calculateCreatedAt on save { create; }
 
-  // 4. 매핑 정보
   mapping for zmat_minsung
   {
     Material     = matnr;
