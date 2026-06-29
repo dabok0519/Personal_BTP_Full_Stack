@@ -92,7 +92,7 @@ CDS를 OData V4 서비스로 노출 → Service Binding을 통해 Fiori Elements
 RAP 구현 과정에서 ABAP Cloud의 최신 문법도 함께 연습했습니다.
 
 | 클래스 | 학습 내용 |
-|--------|-----------|
+|--------|----------|
 | `zcl_table_ms` | `VALUE` 연산자로 테이블 생성, `INSERT FROM TABLE`, Inline Declaration, RAP용 테스트 데이터 적재 |
 | `zcl_conditionals_control_ms` | `COND` 표현식으로 조건 분기 (주식 trend → 의견 매핑) |
 | `zcl_table2_ms` | `FILTER` 연산자 (Sorted Table 기반 조건 필터링) |
