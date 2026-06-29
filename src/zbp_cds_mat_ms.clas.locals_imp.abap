@@ -15,7 +15,7 @@ ENDCLASS.
 CLASS lhc_ZCDS_MAT_MS IMPLEMENTATION.
 
   METHOD get_instance_authorizations.
-  " 2. 수정(Update)과 삭제(Delete) 권한도 모두 허용으로 설정합니다.
+  " 2. 수정(Update)와 삭제(Delete) 권한도 모두 허용으로 설정합니다.
     result = VALUE #( FOR key IN keys (
                         %tky    = key-%tky
                         %update = if_abap_behv=>auth-allowed
